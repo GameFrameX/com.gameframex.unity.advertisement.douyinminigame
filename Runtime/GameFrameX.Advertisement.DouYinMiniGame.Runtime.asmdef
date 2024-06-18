@@ -1,0 +1,26 @@
+{
+    "name": "GameFrameX.Advertisement.DouYinMiniGame.Runtime",
+    "rootNamespace": "GameFrameX.Advertisement.DouYinMiniGame.Runtime",
+    "references": [
+        "GameFrameX.Runtime",
+        "GameFrameX.Event.Runtime",
+        "GameFrameX.Advertisement.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "starksdk.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.bytedance.starksdk",
+            "expression": "",
+            "define": "ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT"
+        }
+    ],
+    "noEngineReferences": false
+}
