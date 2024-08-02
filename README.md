@@ -2,11 +2,16 @@
 
 该库主要服务于 `https://github.com/AlianBlank/GameFrameX` 作为子库使用。
 
+# 注意
+
+抖音官方的SDK不支持激励广告的播放成功和失败的回调.因为源码没有实现.
+
 # 使用主包进行使用。
 
 该包是广告播放的子组件。不对外开放接口。请使用主包使用 `com.gameframex.unity.advertisement` github : https://github.com/AlianBlank/com.gameframex.unity.advertisement
 
 # 使用方式(三种方式)
+
 1. 直接在 `manifest.json` 文件中添加以下内容
    ```json
       {"com.gameframex.unity.advertisement.douyinminigame": "https://github.com/AlianBlank/com.gameframex.unity.advertisement.douyinminigame.git"}
