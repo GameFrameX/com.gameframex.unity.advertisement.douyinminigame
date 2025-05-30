@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.1](https://github.com/GameFrameX/com.gameframex.unity.advertisement.douyinminigame/tree/1.0.1) (2025-05-30)
+
+[Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.advertisement.douyinminigame/compare/1.0.0...1.0.1)
+
 ## [1.0.0](https://github.com/GameFrameX/com.gameframex.unity.advertisement.douyinminigame/tree/1.0.0) (2025-05-29)
 
 [Full Changelog](https://github.com/GameFrameX/com.gameframex.unity.advertisement.douyinminigame/compare/9e8bb057aeb66a4493ba7308e1091beb770184bf...1.0.0)
