@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.0.2...1.1.0) (2025-12-23)
+
+
+### Features
+
+* **ci:** change ci ([24d6788](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/commit/24d6788a513c1c8fbe6b1022a320f93cce5d46f4))
+
 # Changelog
 
 ## [1.0.2](https://github.com/GameFrameX/com.gameframex.unity.advertisement.douyinminigame/tree/1.0.2) (2025-06-01)
