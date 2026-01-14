@@ -2,6 +2,7 @@
 
 using System;
 using GameFrameX.Advertisement.Runtime;
+using GameFrameX.Runtime;
 using StarkSDKSpace;
 
 namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
@@ -12,7 +13,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         private string _adUnitId;
         private DouYinVideoAdCallback _douYinVideoAdCallback;
 
-        public override void Initialize(string adUnitId)
+        public override void Initialize(string adUnitId, bool debug = false)
         {
             GameFrameworkGuard.NotNullOrEmpty(adUnitId, nameof(adUnitId));
             _adUnitId = adUnitId;
@@ -27,7 +28,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
             _douYinVideoAdCallback.ShowResult = null;
         }
 
-        public override void Show(Action<string> success, Action<string> fail, Action<bool> onShowResult)
+        public override void Show(Action<string> success, Action<string> fail, Action<bool> onShowResult, string customData = null)
         {
             OnShowResult = onShowResult;
             _douYinVideoAdCallback.SetShowCallback(success, fail);
@@ -35,8 +36,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
             _adManager.ShowVideoAdWithId(_adUnitId, OnCloseCallback, (errorCode, errorMsg) => { fail?.Invoke(errorMsg); });
         }
 
-
-        public override void Load(Action<string> success, Action<string> fail)
+        public override void Load(Action<string> success, Action<string> fail, string customData = null)
         {
             _douYinVideoAdCallback.SetLoadCallback(success, fail);
         }

@@ -11,7 +11,8 @@
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "starksdk.dll"
+        "starksdk.dll",
+        "ttsdk.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],
