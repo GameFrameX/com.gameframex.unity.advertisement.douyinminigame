@@ -4,12 +4,13 @@ using System;
 using GameFrameX.Advertisement.Runtime;
 using GameFrameX.Runtime;
 using StarkSDKSpace;
+using TTSDK;
 
 namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
 {
     public class DouYinMiniGameAdvertisementManager : BaseAdvertisementManager
     {
-        private StarkAdManager _adManager;
+        private TTRewardedVideoAd _adManager;
         private string _adUnitId;
         private DouYinVideoAdCallback _douYinVideoAdCallback;
 
@@ -17,15 +18,15 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         {
             GameFrameworkGuard.NotNullOrEmpty(adUnitId, nameof(adUnitId));
             _adUnitId = adUnitId;
-            _adManager = StarkSDK.API.GetStarkAdManager();
             _douYinVideoAdCallback = new DouYinVideoAdCallback();
-            _adManager.SetVideoAdCallBack(_douYinVideoAdCallback);
         }
 
-        void OnCloseCallback(bool isComplete)
+        void OnCloseCallback(bool isComplete, int count)
         {
             _douYinVideoAdCallback.ShowResult?.Invoke(isComplete);
             _douYinVideoAdCallback.ShowResult = null;
+            _adManager.Destroy();
+            _adManager = null;
         }
 
         public override void Show(Action<string> success, Action<string> fail, Action<bool> onShowResult, string customData = null)
@@ -33,12 +34,22 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
             OnShowResult = onShowResult;
             _douYinVideoAdCallback.SetShowCallback(success, fail);
             _douYinVideoAdCallback.ShowResult = onShowResult;
-            _adManager.ShowVideoAdWithId(_adUnitId, OnCloseCallback, (errorCode, errorMsg) => { fail?.Invoke(errorMsg); });
+            _adManager.OnClose += OnCloseCallback;
+            _adManager.Show();
         }
 
         public override void Load(Action<string> success, Action<string> fail, string customData = null)
         {
+            if (_adManager != null)
+            {
+                _adManager.OnLoad += () => { success?.Invoke(""); };
+                return;
+            }
+
+            _adManager = TT.CreateRewardedVideoAd(_adUnitId);
             _douYinVideoAdCallback.SetLoadCallback(success, fail);
+            _adManager.OnLoad += () => { success?.Invoke(""); };
+            _adManager.Load();
         }
     }
 }
