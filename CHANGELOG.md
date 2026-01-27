@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.2.0...1.3.0) (2026-01-27)
+
+
+### Features
+
+* **广告:** 添加抖音小游戏广告播放方法 ([c91908e](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/commit/c91908eafb5c62a1b514163337ef683eb8224832))
+
 # [1.2.0](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.1.0...1.2.0) (2026-01-14)
 
 
