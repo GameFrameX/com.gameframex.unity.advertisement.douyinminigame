@@ -29,6 +29,21 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
             _adManager = null;
         }
 
+        public override void Play(Action<bool> playResult, string customData = null)
+        {
+            void AdLoadSuccess(string isSuccess)
+            {
+                Show((s) => { Log.Debug(s); }, (f) => { Log.Error(f); }, playResult, customData);
+            }
+
+            Load(AdLoadSuccess, AdLoadFail);
+
+            void AdLoadFail(string obj)
+            {
+                playResult?.Invoke(false);
+            }
+        }
+
         public override void Show(Action<string> success, Action<string> fail, Action<bool> onShowResult, string customData = null)
         {
             OnShowResult = onShowResult;
@@ -53,4 +68,5 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         }
     }
 }
+
 #endif
