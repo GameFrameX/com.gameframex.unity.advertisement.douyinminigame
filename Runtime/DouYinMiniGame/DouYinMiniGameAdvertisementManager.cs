@@ -5,15 +5,18 @@ using GameFrameX.Advertisement.Runtime;
 using GameFrameX.Runtime;
 using StarkSDKSpace;
 using TTSDK;
+using UnityEngine.Scripting;
 
 namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
 {
+    [Preserve]
     public class DouYinMiniGameAdvertisementManager : BaseAdvertisementManager
     {
         private TTRewardedVideoAd _adManager;
         private string _adUnitId;
         private DouYinVideoAdCallback _douYinVideoAdCallback;
 
+        [Preserve]
         public override void Initialize(string adUnitId, bool debug = false)
         {
             GameFrameworkGuard.NotNullOrEmpty(adUnitId, nameof(adUnitId));
@@ -21,6 +24,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
             _douYinVideoAdCallback = new DouYinVideoAdCallback();
         }
 
+        [Preserve]
         void OnCloseCallback(bool isComplete, int count)
         {
             _douYinVideoAdCallback.ShowResult?.Invoke(isComplete);
@@ -29,6 +33,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
             _adManager = null;
         }
 
+        [Preserve]
         public override void Play(Action<bool> playResult, string customData = null)
         {
             void AdLoadSuccess(string isSuccess)
@@ -44,6 +49,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
             }
         }
 
+        [Preserve]
         public override void Show(Action<string> success, Action<string> fail, Action<bool> onShowResult, string customData = null)
         {
             OnShowResult = onShowResult;
@@ -53,6 +59,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
             _adManager.Show();
         }
 
+        [Preserve]
         public override void Load(Action<string> success, Action<string> fail, string customData = null)
         {
             if (_adManager != null)
