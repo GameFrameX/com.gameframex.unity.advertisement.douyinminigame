@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.3.0...1.3.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* 为抖音小游戏广告类添加Preserve属性防止代码裁剪 ([c16dc4c](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/commit/c16dc4c70e89f6528620c93a0e2733028736e0f7))
+
 # [1.3.0](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.2.0...1.3.0) (2026-01-27)
 
 
