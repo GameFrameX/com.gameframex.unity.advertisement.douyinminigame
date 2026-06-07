@@ -103,6 +103,21 @@ Runtime/
 - [문서](https://gameframex.doc.alianblank.com)
 - [변경 로그](./CHANGELOG.md)
 
+
+## 의존성
+
+| 패키지 | 설명 |
+|--------|------|
+| (无) | - |
+
+
+## 커뮤니티 및 지원
+
+- QQ 그룹: 467608841 / 233840761
+
+## 변경 로그
+
+[Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.advertisement.douyinminigame/releases)에서 변경 로그를 확인하세요.
 ## 라이선스
 
 [MIT](./LICENSE.md)

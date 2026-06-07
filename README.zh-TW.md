@@ -103,6 +103,21 @@ Runtime/
 - [文檔](https://gameframex.doc.alianblank.com)
 - [更新日誌](./CHANGELOG.md)
 
+
+## 依賴
+
+| 套件 | 說明 |
+|------|------|
+| (无) | - |
+
+
+## 社區與支援
+
+- QQ群: 467608841 / 233840761
+
+## 更新日誌
+
+查看 [Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.advertisement.douyinminigame/releases) 了解更新日誌。
 ## 開源協議
 
 [MIT](./LICENSE.md)

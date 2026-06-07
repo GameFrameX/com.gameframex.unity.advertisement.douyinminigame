@@ -103,6 +103,21 @@ Runtime/
 - [Documentation](https://gameframex.doc.alianblank.com)
 - [Changelog](./CHANGELOG.md)
 
+
+## Dependencies
+
+| Package | Description |
+|---------|-------------|
+| (无) | - |
+
+
+## Community & Support
+
+- QQ Group: 467608841 / 233840761
+
+## Changelog
+
+See [Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.advertisement.douyinminigame/releases) for changelog.
 ## License
 
 [MIT](./LICENSE.md)

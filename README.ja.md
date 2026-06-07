@@ -103,6 +103,21 @@ Runtime/
 - [ドキュメント](https://gameframex.doc.alianblank.com)
 - [変更履歴](./CHANGELOG.md)
 
+
+## 依存関係
+
+| パッケージ | 説明 |
+|----------|------|
+| (无) | - |
+
+
+## コミュニティとサポート
+
+- QQグループ: 467608841 / 233840761
+
+## 変更履歴
+
+[Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.advertisement.douyinminigame/releases) で変更履歴を確認してください。
 ## ライセンス
 
 [MIT](./LICENSE.md)
