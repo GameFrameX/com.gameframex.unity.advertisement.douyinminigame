@@ -20,6 +20,7 @@ All-in-One Solution for Indie Game Development · Empowering Indie Developers' D
 **English** | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 </div>
+
 ## Project Overview
 
 DouYin Mini Game ad adapter layer for the GameFrameX advertisement component. Built on [StarkSDK](https://github.com/gameframex/GameFrameX), it wraps rewarded video ad loading, display, and lifecycle management.

@@ -20,6 +20,7 @@
 [English](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | **日本語** | [한국어](README.ko.md)
 
 </div>
+
 ## プロジェクト概要
 
 GameFrameX 広告コンポーネントの抖音ミニゲーム適配レイヤー。[StarkSDK](https://github.com/gameframex/GameFrameX) をベースに、リワード動画広告の読み込み、表示、ライフサイクル管理をラップしています。

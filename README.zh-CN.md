@@ -20,6 +20,7 @@
 [English](README.md) | **简体中文** | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 </div>
+
 ## 项目简介
 
 GameFrameX 广告组件的抖音小游戏适配层，基于 [StarkSDK](https://github.com/gameframex/GameFrameX) 封装激励视频广告的加载、展示与生命周期管理。
