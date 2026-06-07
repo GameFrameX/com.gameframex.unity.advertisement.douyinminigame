@@ -27,25 +27,36 @@ GameFrameX 광고 컴포넌트의 도우인 미니 게임 어댑터 레이어입
 
 ## 빠른 시작
 
-**방법 1: `manifest.json` 수정**
+### 설치
+
+Unity 프로젝트의 `Packages/manifest.json`을 편집하여 `scopedRegistries` 섹션을 추가하세요:
 
 ```json
 {
-  "com.gameframex.unity.advertisement.douyinminigame": "https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git"
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
 }
 ```
 
-**방법 2: Unity Package Manager**
+`scopes`는 이 레지스트리를 통해 어떤 패키지를 해석할지 제어합니다. `com.gameframex`로 시작하는 패키지만 이 레지스트리에서 가져옵니다.
 
-`Window > Package Manager`를 열고 `+`를 클릭하여 `Add package from git URL`을 선택한 후 입력:
+Then add the package to `dependencies`:
 
+```json
+{
+  "dependencies": {
+    "com.gameframex.unity.advertisement.douyinminigame": "1.3.1"
+  }
+}
 ```
-https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git
-```
 
-**방법 3: 수동 설치**
-
-이 저장소를 Unity 프로젝트의 `Packages/` 디렉토리에 클론하면 자동으로 인식됩니다.
 
 ## 사용 예시
 

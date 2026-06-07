@@ -27,25 +27,36 @@ DouYin Mini Game ad adapter layer for the GameFrameX advertisement component. Bu
 
 ## Quick Start
 
-**Option 1: Edit `manifest.json`**
+### Installation
+
+Edit your Unity project's `Packages/manifest.json` and add the `scopedRegistries` section:
 
 ```json
 {
-  "com.gameframex.unity.advertisement.douyinminigame": "https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git"
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
 }
 ```
 
-**Option 2: Unity Package Manager**
+`scopes` controls which packages are resolved through this registry. Only packages whose names start with `com.gameframex` will be fetched from it.
 
-Open `Window > Package Manager`, click `+` and select `Add package from git URL`:
+Then add the package to `dependencies`:
 
+```json
+{
+  "dependencies": {
+    "com.gameframex.unity.advertisement.douyinminigame": "1.3.1"
+  }
+}
 ```
-https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git
-```
 
-**Option 3: Manual Install**
-
-Clone this repository into your Unity project's `Packages/` directory. It will be detected automatically.
 
 ## Usage Examples
 

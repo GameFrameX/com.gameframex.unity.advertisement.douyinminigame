@@ -27,25 +27,36 @@ GameFrameX 広告コンポーネントの抖音ミニゲーム適配レイヤー
 
 ## クイックスタート
 
-**方法1：`manifest.json` を編集**
+### インストール
+
+Unity プロジェクトの `Packages/manifest.json` を編集し、`scopedRegistries` セクションを追加してください：
 
 ```json
 {
-  "com.gameframex.unity.advertisement.douyinminigame": "https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git"
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
 }
 ```
 
-**方法2：Unity Package Manager**
+`scopes` は、どのパッケージをこのレジストリから解決するかを制御します。`com.gameframex` で始まるパッケージのみがこのレジストリから取得されます。
 
-`Window > Package Manager` を開き、`+` をクリックして `Add package from git URL` を選択：
+Then add the package to `dependencies`:
 
+```json
+{
+  "dependencies": {
+    "com.gameframex.unity.advertisement.douyinminigame": "1.3.1"
+  }
+}
 ```
-https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git
-```
 
-**方法3：手動インストール**
-
-このリポジトリを Unity プロジェクトの `Packages/` ディレクトリにクローンすると自動的に認識されます。
 
 ## 使用例
 

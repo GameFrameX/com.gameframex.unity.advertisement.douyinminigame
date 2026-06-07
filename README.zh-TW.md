@@ -27,25 +27,36 @@ GameFrameX 廣告組件的抖音小遊戲適配層，基於 [StarkSDK](https://g
 
 ## 快速開始
 
-**方式一：修改 `manifest.json`**
+### 安裝
+
+編輯 Unity 專案的 `Packages/manifest.json`，添加 `scopedRegistries` 部分：
 
 ```json
 {
-  "com.gameframex.unity.advertisement.douyinminigame": "https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git"
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
 }
 ```
 
-**方式二：Unity Package Manager**
+`scopes` 控制哪些套件透過此註冊表解析。只有以 `com.gameframex` 開頭的套件才會從這個註冊表取得。
 
-開啟 `Window > Package Manager`，點擊 `+` 選擇 `Add package from git URL`，輸入：
+Then add the package to `dependencies`:
 
+```json
+{
+  "dependencies": {
+    "com.gameframex.unity.advertisement.douyinminigame": "1.3.1"
+  }
+}
 ```
-https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git
-```
 
-**方式三：手動安裝**
-
-將本倉庫克隆到 Unity 專案的 `Packages/` 目錄下即可自動識別。
 
 ## 使用範例
 
