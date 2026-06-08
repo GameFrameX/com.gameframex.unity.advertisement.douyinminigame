@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.3.1...1.3.2) (2026-06-08)
+
+
+### Bug Fixes
+
+* 补全包规范文件（LICENSE/CHANGELOG/URL 字段/unity 字段） ([de68caa](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/commit/de68caab909d0a41169881216e18453f7a158e81))
+
 ## [1.3.1](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.3.0...1.3.1) (2026-03-03)
 
 
