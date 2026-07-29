@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.3.2...1.4.0) (2026-07-29)
+
+
+### Features
+
+* 添加依赖项以支持 Unity 组件 ([93f18bb](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/commit/93f18bbd7a234602f1f677d5486103cdd12458f2))
+
 ## [1.3.2](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.3.1...1.3.2) (2026-06-08)
 
 
