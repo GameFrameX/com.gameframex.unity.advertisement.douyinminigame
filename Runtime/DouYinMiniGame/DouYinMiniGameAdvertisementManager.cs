@@ -19,9 +19,37 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
     [Preserve]
     public class DouYinMiniGameAdvertisementManager : BaseAdvertisementManager
     {
+        /// <summary>
+        /// 抖音小游戏渠道唯一标识。
+        /// </summary>
+        [Preserve]
+        public const string ChannelId = "douyinminigame";
+
         private TTRewardedVideoAd _adManager;
         private string _adUnitId;
         private DouYinVideoAdCallback _douYinVideoAdCallback;
+
+        /// <summary>
+        /// 使用强类型配置初始化抖音小游戏广告管理器。
+        /// </summary>
+        /// <remarks>
+        /// Initializes the ad manager with the strongly-typed DouYin mini-game configuration.
+        /// </remarks>
+        /// <param name="config">抖音小游戏渠道配置 / DouYin mini-game channel configuration</param>
+        [Preserve]
+        public override void Initialize(AdvertisementConfig config)
+        {
+            var douYinConfig = config as DouYinMiniGameAdvertisementConfig;
+            if (douYinConfig == null)
+            {
+                throw new ArgumentException("Config must be DouYinMiniGameAdvertisementConfig", nameof(config));
+            }
+
+            GameFrameworkGuard.NotNullOrEmpty(douYinConfig.adUnitId, nameof(douYinConfig.adUnitId));
+#pragma warning disable CS0618
+            Initialize(douYinConfig.adUnitId, douYinConfig.isDebug);
+#pragma warning restore CS0618
+        }
 
         /// <summary>
         /// 初始化广告管理器，设置广告单元Id和回调对象。

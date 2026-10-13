@@ -18,6 +18,8 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
 #if UNITY_WEBGL && ENABLE_DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT
             _ = typeof(DouYinMiniGameAdvertisementManager);
             _ = typeof(DouYinVideoAdCallback);
+            _ = typeof(DouYinMiniGameAdvertisementConfig);
+            _ = typeof(DouYinMiniGameAdvertisementBootstrap);
 #endif
         }
     }
