@@ -23,7 +23,7 @@
 
 ## プロジェクト概要
 
-GameFrameX 広告コンポーネントの抖音ミニゲーム適配レイヤー。[StarkSDK](https://github.com/gameframex/GameFrameX) をベースに、リワード動画広告の読み込み、表示、ライフサイクル管理をラップしています。
+GameFrameX 広告コンポーネントの抖音ミニゲーム適配レイヤー。[StarkSDK](https://github.com/gameframex/GameFrameX) をベースに、リワード動画広告の読み込み、表示、ライフサイクル管理をラップしています。本パッケージは `DouYinMiniGameAdvertisementBootstrap` によって `BeforeSceneLoad` ステージでメインパッケージの `AdvertisementRegistry` に自己登録します（`UNITY_WEBGL && ENABLE_DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT` マクロが有効でない場合コードはストリップされ、登録は行われません。参照することが登録です）。初期化はファクトリクロージャー経由で強く型付けされた設定を注入します。
 
 ## クイックスタート
 
@@ -59,6 +59,26 @@ GameFrameX 広告コンポーネントの抖音ミニゲーム適配レイヤー
    ```
 3. Unity の **Package Manager** で **Git URL** を使用して追加：`https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git`
 4. リポジトリを Unity プロジェクトの `Packages` ディレクトリにクローンしてください。自動的に読み込まれます。
+
+### チャネル登録と設定
+
+起動時（初回の広告呼び出し前）に `DouYinMiniGameAdvertisementBootstrap.Config` を設定してください：
+
+```csharp
+using GameFrameX.Advertisement.Runtime;
+
+// 起動時（初回の広告呼び出し前）にチャネル設定を注入
+DouYinMiniGameAdvertisementBootstrap.Config = new DouYinMiniGameAdvertisementConfig
+{
+    adUnitId = "広告ユニットID",
+    isDebug = false,
+};
+
+// その後は通常どおり AdvertisementComponent を使用。または明示的にルーティング
+var manager = AdvertisementRegistry.ResolveManager("douyinminigame");
+```
+
+チャネルの `ChannelId` 定数は `"douyinminigame"` で、`AdvertisementRegistry.ResolveManager("douyinminigame")` で本チャネルへ明示的にルーティングできます。
 ## 使用例
 
 このパッケージは `com.gameframex.unity.advertisement` のサブコンポーネントであり、公開 API を直接公開しません。メイン広告パッケージから統一的にアクセスしてください：
@@ -73,7 +93,7 @@ GameFrameX 広告コンポーネントの抖音ミニゲーム適配レイヤー
 - 広告の読み込み/表示の成功・失敗コールバック
 - 広告クローズ時の有効視聴自動判定
 - IL2CPP コードストリッピング対策（`Preserve` 属性 + `CroppingHelper`）
-- 条件付きコンパイル（`UNITY_WEBGL` + `ENABLE_DOUYIN_MINI_GAME`）
+- 条件付きコンパイル（`UNITY_WEBGL` + `ENABLE_DOUYIN_MINI_GAME` + `ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT`）
 
 ### 依存関係
 
@@ -94,9 +114,20 @@ Runtime/
 └── GameFrameX.Advertisement.DouYinMiniGame.Runtime.asmdef   # アセンブリ定義
 ```
 
+### 主要なクラス
+
+- **`DouYinMiniGameAdvertisementManager`**: 抖音ミニゲーム広告マネージャー。`ChannelId = "douyinminigame"` 定数を持ちます。
+- **`DouYinMiniGameAdvertisementConfig`**: `adUnitId`（広告ユニットID）フィールドを持つ強く型付けされたチャネル設定。`DouYinMiniGameAdvertisementBootstrap.Config` 経由で注入。
+- **`DouYinMiniGameAdvertisementBootstrap`**: チャネルの起動時登録。`BeforeSceneLoad` ステージでメインパッケージの `AdvertisementRegistry` に自己登録し、起動時の `Config` 静的プロパティを持ちます。
+
+### 破壊的変更（v2.1）
+
+- **マクロ選択の広告ユニットIDフィールドの削除**：`AdvertisementComponent` の「WebGL 抖音 広告ユニットID」シリアライズフィールドは削除され、`adUnitId` は `DouYinMiniGameAdvertisementBootstrap.Config` 経由で注入されます；
+- **メインパッケージの Inspector タイプドロップダウンの削除**：チャネル発見はメインパッケージの `AdvertisementRegistry` に統一されました。
+
 ## プラットフォーム対応
 
-- コードは `UNITY_WEBGL` と `ENABLE_DOUYIN_MINI_GAME` が定義されている場合のみコンパイルされます。
+- コードは `UNITY_WEBGL` と `ENABLE_DOUYIN_MINI_GAME`、`ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT` が定義されている場合のみコンパイルされます。
 - 抖音公式 SDK のリワード広告インターフェースは表示成功/失敗のコールバックを完全に実装しておらず、一部のコールバックが発火しない場合があります。
 
 ## ドキュメントとリソース

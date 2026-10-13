@@ -23,7 +23,7 @@ All-in-One Solution for Indie Game Development · Empowering Indie Developers' D
 
 ## Project Overview
 
-DouYin Mini Game ad adapter layer for the GameFrameX advertisement component. Built on [StarkSDK](https://github.com/gameframex/GameFrameX), it wraps rewarded video ad loading, display, and lifecycle management.
+DouYin Mini Game ad adapter layer for the GameFrameX advertisement component. Built on [StarkSDK](https://github.com/gameframex/GameFrameX), it wraps rewarded video ad loading, display, and lifecycle management. This package self-registers into the main package's `AdvertisementRegistry` via `DouYinMiniGameAdvertisementBootstrap` at the `BeforeSceneLoad` stage (when the macros `UNITY_WEBGL && ENABLE_DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT` are not enabled the code is stripped and registration does not happen; referencing the package is registering); initialization is injected with a strongly-typed config through the factory closure.
 
 ## Quick Start
 
@@ -59,6 +59,26 @@ Choose one of the following methods:
    ```
 3. Use **Package Manager** in Unity with **Git URL**: `https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git`
 4. Clone the repository into your Unity project's `Packages` directory. It will be loaded automatically.
+
+### Channel Registration & Configuration
+
+Assign `DouYinMiniGameAdvertisementBootstrap.Config` at startup (before the first ad call):
+
+```csharp
+using GameFrameX.Advertisement.Runtime;
+
+// Inject the channel config at startup (before the first ad call)
+DouYinMiniGameAdvertisementBootstrap.Config = new DouYinMiniGameAdvertisementConfig
+{
+    adUnitId = "your ad unit id",
+    isDebug = false,
+};
+
+// Then use AdvertisementComponent as usual; or explicitly route to this channel
+var manager = AdvertisementRegistry.ResolveManager("douyinminigame");
+```
+
+The channel `ChannelId` constant is `"douyinminigame"`; `AdvertisementRegistry.ResolveManager("douyinminigame")` routes explicitly to this channel.
 ## Usage Examples
 
 This package is a sub-component of `com.gameframex.unity.advertisement` and does not expose public APIs directly. Use the main advertisement package for unified access:
@@ -73,7 +93,7 @@ This package is a sub-component of `com.gameframex.unity.advertisement` and does
 - Ad load/show success and failure callbacks
 - Automatic valid-view detection on ad close
 - IL2CPP code stripping protection (`Preserve` attribute + `CroppingHelper`)
-- Conditional compilation (`UNITY_WEBGL` + `ENABLE_DOUYIN_MINI_GAME`)
+- Conditional compilation (`UNITY_WEBGL` + `ENABLE_DOUYIN_MINI_GAME` + `ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT`)
 
 ### Dependencies
 
@@ -94,9 +114,20 @@ Runtime/
 └── GameFrameX.Advertisement.DouYinMiniGame.Runtime.asmdef   # Assembly definition
 ```
 
+### Main Classes
+
+- **`DouYinMiniGameAdvertisementManager`**: DouYin Mini Game ad manager, with the `ChannelId = "douyinminigame"` constant.
+- **`DouYinMiniGameAdvertisementConfig`**: Strongly-typed channel config with the `adUnitId` field, injected via `DouYinMiniGameAdvertisementBootstrap.Config`.
+- **`DouYinMiniGameAdvertisementBootstrap`**: Channel startup registration; self-registers into the main package's `AdvertisementRegistry` at `BeforeSceneLoad`, with a startup-time `Config` static property.
+
+### Breaking Changes (v2.1)
+
+- **Macro-selected ad unit ID fields removed**: the serialized "WebGL DouYin ad unit ID" field on `AdvertisementComponent` has been removed; `adUnitId` is now injected via `DouYinMiniGameAdvertisementBootstrap.Config`;
+- **Main package Inspector type dropdown removed**: channel discovery is now unified through the main package's `AdvertisementRegistry`.
+
 ## Platform Support
 
-- Code compiles only when `UNITY_WEBGL` and `ENABLE_DOUYIN_MINI_GAME` are defined.
+- Code compiles only when `UNITY_WEBGL`, `ENABLE_DOUYIN_MINI_GAME`, and `ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT` are defined.
 - The DouYin official SDK does not fully implement rewarded ad show success/failure callbacks; some callbacks may not fire.
 
 ## Documentation & Resources

@@ -23,7 +23,7 @@
 
 ## 項目簡介
 
-GameFrameX 廣告組件的抖音小遊戲適配層，基於 [StarkSDK](https://github.com/gameframex/GameFrameX) 封裝激勵影片廣告的載入、展示與生命週期管理。
+GameFrameX 廣告組件的抖音小遊戲適配層，基於 [StarkSDK](https://github.com/gameframex/GameFrameX) 封裝激勵影片廣告的載入、展示與生命週期管理。本包通過 `DouYinMiniGameAdvertisementBootstrap` 在 `BeforeSceneLoad` 階段自註冊進主包 `AdvertisementRegistry`（宏 `UNITY_WEBGL && ENABLE_DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT` 未啟用時代碼被裁剪，註冊不會發生；引用即註冊）；初始化由工廠閉包注入強型別配置。
 
 ## 快速開始
 
@@ -59,6 +59,26 @@ GameFrameX 廣告組件的抖音小遊戲適配層，基於 [StarkSDK](https://g
    ```
 3. 在 Unity 的 `Package Manager` 中使用 `Git URL` 的方式添加庫，地址為：`https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame.git`
 4. 直接下載倉庫放置到 Unity 專案的 `Packages` 目錄下，會自動載入識別。
+
+### 渠道註冊與配置
+
+在啟動期（首次廣告呼叫前）對 `DouYinMiniGameAdvertisementBootstrap.Config` 賦值：
+
+```csharp
+using GameFrameX.Advertisement.Runtime;
+
+// 啟動期（首次廣告呼叫前）注入渠道配置
+DouYinMiniGameAdvertisementBootstrap.Config = new DouYinMiniGameAdvertisementConfig
+{
+    adUnitId = "你的廣告位ID",
+    isDebug = false,
+};
+
+// 之後照常使用 AdvertisementComponent；或顯式路由到本渠道
+var manager = AdvertisementRegistry.ResolveManager("douyinminigame");
+```
+
+渠道 `ChannelId` 常量值為 `"douyinminigame"`，可通過 `AdvertisementRegistry.ResolveManager("douyinminigame")` 顯式路由到本渠道。
 ## 使用範例
 
 本套件為 `com.gameframex.unity.advertisement` 的子組件，不直接對外暴露介面。請透過主廣告套件統一呼叫：
@@ -73,7 +93,7 @@ GameFrameX 廣告組件的抖音小遊戲適配層，基於 [StarkSDK](https://g
 - 廣告載入/展示成功與失敗回呼
 - 廣告關閉時自動判斷有效觀看
 - IL2CPP 程式碼裁剪防護（`Preserve` 屬性 + `CroppingHelper`）
-- 條件編譯（`UNITY_WEBGL` + `ENABLE_DOUYIN_MINI_GAME`）
+- 條件編譯（`UNITY_WEBGL` + `ENABLE_DOUYIN_MINI_GAME` + `ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT`）
 
 ### 依賴
 
@@ -94,9 +114,20 @@ Runtime/
 └── GameFrameX.Advertisement.DouYinMiniGame.Runtime.asmdef   # 組件定義
 ```
 
+### 主要類
+
+- **`DouYinMiniGameAdvertisementManager`**: 抖音小遊戲廣告管理器，含 `ChannelId = "douyinminigame"` 常量。
+- **`DouYinMiniGameAdvertisementConfig`**: 渠道強型別配置，含 `adUnitId`（廣告位ID）欄位，經 `DouYinMiniGameAdvertisementBootstrap.Config` 注入。
+- **`DouYinMiniGameAdvertisementBootstrap`**: 渠道啟動註冊，`BeforeSceneLoad` 階段自註冊進主包 `AdvertisementRegistry`，含啟動期 `Config` 靜態屬性。
+
+### 破壞性變更（v2.1）
+
+- **宏選廣告位ID欄位已移除**：`AdvertisementComponent` 上的「WebGL 抖音 廣告位ID」序列化欄位已刪除，`adUnitId` 改經 `DouYinMiniGameAdvertisementBootstrap.Config` 注入；
+- **主包 Inspector 類型下拉已移除**：渠道發現統一收斂到主包 `AdvertisementRegistry`。
+
 ## 平台支援
 
-- 程式碼僅在 `UNITY_WEBGL` 且定義了 `ENABLE_DOUYIN_MINI_GAME` 巨集時編譯。
+- 程式碼僅在 `UNITY_WEBGL` 且定義了 `ENABLE_DOUYIN_MINI_GAME` 與 `ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT` 巨集時編譯。
 - 抖音官方 SDK 的激勵廣告介面未完整實作播放成功/失敗的回呼，部分回呼可能不會觸發。
 
 ## 文檔與資源
