@@ -3,7 +3,7 @@
   "displayName": "Game Frame X Advertisement (DouYin Mini Game)",
   "category": "Game Frame X",
   "description": "GameFrameX Advertisement DouYin Mini Game — Douyin Mini Game rewarded video ad adapter for GameFrameX Advertisement, built on StarkSDK to wrap rewarded video loading, display and lifecycle management. DouYinMiniGameAdvertisementBootstrap self-registers the channel into the core AdvertisementRegistry at BeforeSceneLoad and injects a strongly typed config through the factory closure; when UNITY_WEBGL with ENABLE_DOUYIN_MINI_GAME and ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT macros is not enabled the code is stripped and registration does not happen. Exposes no public API of its own — ads are played through the main advertisement package. Docs: https://gameframex.doc.alianblank.com\n\nGameFrameX Advertisement DouYin Mini Game — GameFrameX 广告组件的抖音小游戏适配渠道包，基于 StarkSDK 封装激励视频广告的加载、展示与生命周期管理。DouYinMiniGameAdvertisementBootstrap 在 BeforeSceneLoad 阶段自注册进主包 AdvertisementRegistry，初始化由工厂闭包注入强类型配置；当 UNITY_WEBGL 且启用 ENABLE_DOUYIN_MINI_GAME 与 ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT 宏的条件未满足时代码被裁剪，注册不会发生。本包不直接对外暴露接口，请通过主广告包统一调用。文档：https://gameframex.doc.alianblank.com",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "unity": "2019.4",
   "keywords": [
     "Game Frame X"

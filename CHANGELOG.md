@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.4.0...2.0.0) (2026-10-15)
+
+
+### Features
+
+* **advertisement.douyinminigame:** 适配 GameFrameX 3.0.0 ([c1fc0dc](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/commit/c1fc0dc955b058688ca7e9f714474533e2794d16))
+* **ad:** 引入渠道自注册与强类型配置 ([20a46b9](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/commit/20a46b923e30de805933a6c69685d0fc422cfb14))
+
+
+### BREAKING CHANGES
+
+* **ad:** 移除 AdvertisementComponent 上 WebGL 抖音广告位ID 序列化字段，
+广告位改经 DouYinMiniGameAdvertisementBootstrap.Config 启动期注入；渠道发现
+统一收敛到主包 AdvertisementRegistry。
+
 # [1.4.0](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.3.2...1.4.0) (2026-07-29)
 
 
