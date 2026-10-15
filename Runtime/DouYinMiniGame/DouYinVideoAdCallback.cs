@@ -1,7 +1,6 @@
 ﻿#if UNITY_WEBGL && ENABLE_DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT
 using System;
 using StarkSDKSpace;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
 {
@@ -11,7 +10,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
     /// <remarks>
     /// DouYin video ad callback handler, processing ad load, show, error, and close events.
     /// </remarks>
-    [Preserve]
+    [UnityEngine.Scripting.Preserve]
     internal class DouYinVideoAdCallback : StarkAdManager.VideoAdCallback
     {
         private Action<string> loadSuccess;
@@ -25,7 +24,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// Gets or sets the ad show result callback.
         /// </remarks>
         /// <value>展示结果回调，参数为是否观看完成 / Show result callback, parameter indicates whether watching was completed</value>
-        [Preserve] public Action<bool> ShowResult { get; set; }
+        [UnityEngine.Scripting.Preserve] public Action<bool> ShowResult { get; set; }
 
         /// <summary>
         /// 视频广告加载完成时回调。
@@ -33,7 +32,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// <remarks>
         /// Callback when the video ad has finished loading.
         /// </remarks>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public void OnVideoLoaded()
         {
             loadSuccess?.Invoke(null);
@@ -46,7 +45,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// Callback when the video ad is successfully shown.
         /// </remarks>
         /// <param name="timestamp">展示时间戳 / Show timestamp</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public void OnVideoShow(long timestamp)
         {
             showSuccess?.Invoke(timestamp.ToString());
@@ -60,7 +59,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// </remarks>
         /// <param name="errCode">错误码 / Error code</param>
         /// <param name="errorMessage">错误信息 / Error message</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public void OnError(int errCode, string errorMessage)
         {
             loadFail?.Invoke(errorMessage);
@@ -76,7 +75,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// <param name="watchedTime">实际观看时长（秒） / Actual watch duration in seconds</param>
         /// <param name="effectiveTime">有效观看时长阈值（秒） / Effective watch duration threshold in seconds</param>
         /// <param name="duration">视频总时长（秒） / Total video duration in seconds</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public void OnVideoClose(int watchedTime, int effectiveTime, int duration)
         {
             ShowResult?.Invoke(watchedTime >= effectiveTime);
@@ -91,7 +90,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// </remarks>
         /// <param name="success">加载成功回调 / Load success callback</param>
         /// <param name="fail">加载失败回调，参数为错误信息 / Load failure callback, parameter is the error message</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public void SetLoadCallback(Action<string> success, Action<string> fail)
         {
             loadSuccess = success;
@@ -106,7 +105,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// </remarks>
         /// <param name="success">展示成功回调 / Show success callback</param>
         /// <param name="fail">展示失败回调，参数为错误信息 / Show failure callback, parameter is the error message</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public void SetShowCallback(Action<string> success, Action<string> fail)
         {
             showSuccess = success;

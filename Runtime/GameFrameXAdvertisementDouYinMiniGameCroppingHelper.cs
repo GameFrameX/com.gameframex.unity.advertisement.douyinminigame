@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
 {
@@ -9,10 +8,10 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
     /// <remarks>
     /// DouYin Mini Game ad anti-stripping helper, ensuring necessary code is preserved during IL2CPP stripping by referencing key types.
     /// </remarks>
-    [Preserve]
+    [UnityEngine.Scripting.Preserve]
     public class GameFrameXAdvertisementDouYinMiniGameCroppingHelper : MonoBehaviour
     {
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         private void Start()
         {
 #if UNITY_WEBGL && ENABLE_DOUYIN_MINI_GAME && ENABLE_DOUYIN_MINI_GAME_ADVERTISEMENT

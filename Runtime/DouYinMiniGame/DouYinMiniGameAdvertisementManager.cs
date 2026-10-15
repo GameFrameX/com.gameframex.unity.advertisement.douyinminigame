@@ -6,7 +6,6 @@ using GameFrameX.Runtime;
 using StarkSDKSpace;
 using TTSDK;
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
 {
@@ -16,13 +15,13 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
     /// <remarks>
     /// DouYin Mini Game rewarded video ad manager, responsible for ad loading, display, and lifecycle management.
     /// </remarks>
-    [Preserve]
+    [UnityEngine.Scripting.Preserve]
     public class DouYinMiniGameAdvertisementManager : BaseAdvertisementManager
     {
         /// <summary>
         /// 抖音小游戏渠道唯一标识。
         /// </summary>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public const string ChannelId = "douyinminigame";
 
         private TTRewardedVideoAd _adManager;
@@ -36,7 +35,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// Initializes the ad manager with the strongly-typed DouYin mini-game configuration.
         /// </remarks>
         /// <param name="config">抖音小游戏渠道配置 / DouYin mini-game channel configuration</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Initialize(AdvertisementConfig config)
         {
             var douYinConfig = config as DouYinMiniGameAdvertisementConfig;
@@ -60,7 +59,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// <param name="adUnitId">广告单元Id / Ad unit ID</param>
         /// <param name="debug">是否启用调试模式 / Whether to enable debug mode</param>
         /// <exception cref="ArgumentNullException">当 <paramref name="adUnitId"/> 为空或 null 时抛出 / Thrown when <paramref name="adUnitId"/> is null or empty</exception>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Initialize(string adUnitId, bool debug = false)
         {
             GameFrameworkGuard.NotNullOrEmpty(adUnitId, nameof(adUnitId));
@@ -76,7 +75,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// </remarks>
         /// <param name="isComplete">视频是否观看完成 / Whether the video was watched to completion</param>
         /// <param name="count">观看时长计数 / Watch duration count</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         void OnCloseCallback(bool isComplete, int count)
         {
             _douYinVideoAdCallback.ShowResult?.Invoke(isComplete);
@@ -93,7 +92,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// </remarks>
         /// <param name="playResult">播放结果回调，参数为是否观看完成 / Play result callback, parameter indicates whether watching was completed</param>
         /// <param name="customData">自定义数据，传递给广告服务端 / Custom data passed to the ad server</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Play(Action<bool> playResult, string customData = null)
         {
             void AdLoadSuccess(string isSuccess)
@@ -141,7 +140,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// <param name="fail">展示失败回调，参数为错误信息 / Show failure callback, parameter is the error message</param>
         /// <param name="onShowResult">展示结果回调，参数为是否观看完成 / Show result callback, parameter indicates whether watching was completed</param>
         /// <param name="customData">自定义数据 / Custom data</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Show(Action<string> success, Action<string> fail, Action<bool> onShowResult, string customData = null)
         {
             OnShowResult = onShowResult;
@@ -160,7 +159,7 @@ namespace GameFrameX.Advertisement.DouYinMiniGame.Runtime
         /// <param name="success">加载成功回调 / Load success callback</param>
         /// <param name="fail">加载失败回调，参数为错误信息 / Load failure callback, parameter is the error message</param>
         /// <param name="customData">自定义数据 / Custom data</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Load(Action<string> success, Action<string> fail, string customData = null)
         {
             if (_adManager != null)
