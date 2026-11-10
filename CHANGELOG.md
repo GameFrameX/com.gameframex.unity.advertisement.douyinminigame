@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/2.0.0...2.0.1) (2026-11-10)
+
+
+### Bug Fixes
+
+* **advertisement.douyinminigame:** 添加完整 link.xml 防代码裁剪保护 ([72dbdd2](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/commit/72dbdd2ad2bae3eed11a0afb0e0aef386ddcae76))
+
 # [2.0.0](https://github.com/gameframex/com.gameframex.unity.advertisement.douyinminigame/compare/1.4.0...2.0.0) (2026-10-15)
 
 
